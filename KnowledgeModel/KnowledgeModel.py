@@ -11,19 +11,12 @@ app = flask.Flask(__name__)
 #model = torch.load('modelname')
 
 # 将预测函数定义为一个端点
-@app.route("/knowledgeGraphServer/KnowledgeModel", methods=["GET","POST"])
+@app.route("/getKnowledgeModelData", methods=["GET","POST"])
 def KnowledgeModel():
     json_data = request.get_json()
     print(json_data)
 
     '''
-    sendJSON = [
-    {#深度模型请求参数
-        "question":"青花缠枝牡丹纹罐是什么朝代得？"
-                },
-    {#问答对模型请求参数
-        "question":"青花缠枝牡丹纹罐是什么朝代得？"
-                },
     {#图谱查询模型请求参数
         "id": 1,
         "name" : "深度模型视图",
@@ -32,8 +25,6 @@ def KnowledgeModel():
         "subject": "朝代",
         "relation": "是什么时间",
     }
-]
-
     '''
     data = { #需返回数据
         "id": 3,
