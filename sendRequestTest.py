@@ -75,19 +75,19 @@ def getResultByPost(question):
 
 if __name__ == '__main__':
     
-    # result = getResultByPost("交互界面请求的问题" )
-
-    
-    # for error in result['error']:
-        
-    #     print(error)
-            
-    
-    # print(result['view'])
     result = getResultByPost("交互界面请求的问题" )
 
     
-    print(result)
+    for error in result['error']:
+        
+        print(error)
+            
+    
+    print(result['view'])
+    # result = getResultByPost("交互界面请求的问题" )
+
+    
+    # print(result)
 
 
 
