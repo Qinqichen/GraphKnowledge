@@ -36,6 +36,12 @@ def DeepModel():
              "model":"深度模型",
              "isError":False
              }
+    # 测试语句
+    if json_data['question'] == '深度模型出错' :
+        
+        error['isError'] = True
+    
+    
     showJson = {
         "view": data,
         "error": error,

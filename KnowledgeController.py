@@ -84,7 +84,7 @@ def getAnswer():
 
     return jsonify(showJson)
     
-
+# 调用问答对模型，存储数据
 @app.route( cfgG.Controller_preURL + "/saveQuestionCouple",methods=['get','post'])
 def saveQuestionCouple():
     
@@ -102,7 +102,7 @@ def saveQuestionCouple():
     return 
 
 
-
+# 调用问答对模型获取数据
 def doCoupleModel(questionJSON):
     
     # 需要返回给交互界面的数据
@@ -128,7 +128,7 @@ def doCoupleModel(questionJSON):
     
     return resultJSON,error
 
-
+# 调用深度模型获取数据
 def doDeepModel(questionJSON):
     
     # 需要返回给交互界面的数据
@@ -157,7 +157,7 @@ def doDeepModel(questionJSON):
     
     return resultJSON , error
 
-
+# 调用知识图谱模型查询数据
 def doKnowledgeModel(deepResultJSON):
     
     resultJSON = {

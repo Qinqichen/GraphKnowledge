@@ -39,6 +39,14 @@ def KnowledgeModel():
              "model":"图谱查询模型",
              "isError":False
              }
+    
+    # 测试语句
+    if json_data['origin'] == '图谱模型出错' :
+        
+        error['isError'] = True
+    
+    
+    
     showJson = {
         "view": data,
         "error": error,

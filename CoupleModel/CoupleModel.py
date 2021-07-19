@@ -30,12 +30,22 @@ def doCoupleModel():
         "answer": "问答对模型的数据库答案",
         "have":False
     }
+    
+    
+    
     error = { "id":2,
              "type":"nullError",
              "description":"无数据",
-             "model":"问答对模型",
+             "model":"问答对模型测试",
              "isError":True
              }
+    # 测试语句
+    if json_data['question'] == '问答对模型有答案' :
+        
+        data['hava'] = True
+        
+        error['isError'] = False
+    
     showJson = {
         "view": data,
         "error": error,
