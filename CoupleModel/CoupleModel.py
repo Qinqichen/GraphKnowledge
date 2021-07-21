@@ -53,7 +53,24 @@ def doCoupleModel():
 
     return jsonify(showJson)
 
+# 将预测函数定义为一个端点
+@app.route("/saveQuestionCouple", methods=["GET","POST"])
+def saveQuestionCouple():
+    json_data = request.get_json()
+    print(json_data)
 
-if __name__ == '__main__':
+    '''
+    json_data = {
+        "question":"",
+        "answer":""
+                }
 
-    app.run(port=1235, debug=True)
+    '''
+
+    # 调用数据库存储功能函数
+    # 例如： r = DataBasePool.QuestionCouple.insert(json_data['question'],json_data['answer'])
+    # 
+   
+  
+
+    return jsonify("保存成功")
