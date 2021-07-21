@@ -96,7 +96,7 @@ def saveQuestionCouple():
                 }
     
     # 调用问答对模型存储数据
-    r = requests.get( cfgG.HOST_PORT + cfgG.CoupleModel_preURL + "/saveCoupleModelData",json=coupleData )
+    r = requests.get( cfgG.HOST_PORT + cfgG.CoupleModel_preURL + "/saveQuestionCouple",json=coupleData )
     
 
     return 
