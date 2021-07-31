@@ -1,0 +1,3 @@
+# 暂时忽略以下几个大文件
+/DeepModel/Entity/*
+/DeepModel/Relation/*
