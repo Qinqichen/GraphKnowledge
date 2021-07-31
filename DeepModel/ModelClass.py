@@ -15,6 +15,9 @@ Created on Wed Jul 21 14:20:57 2021
 
 """
 
+
+
+
 class ModelClass:
     
     
@@ -27,24 +30,22 @@ class ModelClass:
     
     def doModelFunction(self,question,num = 1):
         
-        result = [];
+        result = []
+        error = {}
         
         if num == 1:
-            result = self.EntityIdentify(question)
+            result,error = self.EntityIdentify(question)
         elif num == 2 :
-            result  = self.RelationIdentify(question)
+            result,error  = self.RelationIdentify(question)
         else:
-            result =[ {
+            error = {
                      'id':1,
                      'isError':True,
                      'des':'ModeClass.doModelFunction使用了非法参数 ' + str(num)
-                    }]
-        # result = {
-        #             'enity':enity,
-        #             'relation':relation,
-        #             'error':error
-        #         }
-        return result 
+                    }
+            
+            
+        return result , error
     
     
     def EntityIdentify(self,question):
@@ -54,16 +55,24 @@ class ModelClass:
         
         entity = [
                 {
-                    'enity':'青花瓷',
+                    'entity':'青花瓷',
                     'type':'object'
                 },
                 {
-                    'enity':'周星驰',
+                    'entity':'周星驰',
                     'type':'subject'
                 }
             ]
         
-        return entity
+        error = {
+                'id':-1,
+                'isError':False,
+                'type':'',
+                'description':'',
+                'model':'DeepModel EntityIdentify'
+            }
+        
+        return entity, error
 
 
 
@@ -79,7 +88,15 @@ class ModelClass:
                 }
             ]
         
-        return relation
+        error = {
+                'id':-1,
+                'isError':False,
+                'type':'',
+                'description':'',
+                'model':'DeepModel RelationIdentify'
+            }
+        
+        return relation,error
 
 
 

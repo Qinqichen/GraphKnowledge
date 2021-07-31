@@ -59,29 +59,40 @@ def DeepModel():
         "relation": "",
     }
     
+    showJson = {
+            "view": data,
+            "error": ''
+        }
+    
+    
+    # 模型使用类
     modelClass = ModelClass()
     
-    enitys = modelClass.doModelFunction("测试问题",1)
-    for enity in enitys:
-        data[enity['type']] = enity['enity']
+    # 实体识别
+    entitys,errorEntity = modelClass.doModelFunction("测试问题",1)
+    if errorEntity['isError'] == True :
+        showJson['error'] = errorEntity
+        return jsonify(showJson)
     
-    relations = modelClass.doModelFunction("测试问题",2)
+    for entity in entitys:
+        data[entity['type']] = entity['entity']
+    
+    # 关系检测
+    relations,errorRelation = modelClass.doModelFunction("测试问题",2)
+    if errorRelation['isError'] == True :
+        showJson['error'] = errorRelation
+        return jsonify(showJson)
+    
     for relation in relations:
         data['relation'] = relation['relation']
     
     
-    error = {"id":1,
-             "type":"timeOut",
-             "description":"模型超时",
+    error = {"id":-1,
+             "type":"",
+             "description":"",
              "model":"深度模型",
              "isError":False
              }
-    
-    # 测试语句
-    if json_data['question'] == '深度模型出错' :
-        
-        error['isError'] = True
-    # 测试完毕
     
     showJson = {
         "view": data,
@@ -90,9 +101,3 @@ def DeepModel():
 
     return jsonify(showJson)
 
-
-
-
-# if __name__ == '__main__':
-
-#     app.run(port=1235, debug=True)
