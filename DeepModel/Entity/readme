@@ -1,0 +1,11 @@
+1. 数据集要分为三个部分train.txt  dev.txt   test.txt,统一放在sample_data目录下
+2. 数据统一整理为如下格式：
+    词     标签  （每行只有一个词），具体见截图
+    标签为BIOES标注，如果数据集为BIO标注，需要转换为BIOES
+3. main中的参数可以修改，但是不要删除，大多数参数不需要动，重点关注以下参数：
+   train_dir dev_dir test_dir
+   iteration  batch_size ave_batch_loss
+   lstm_layer learning_rate
+   如果使用gpu，gpu设置为True,并且  torch.cuda.set_device(cudaNo)
+                                flair.device = "cuda:"+str(cudaNo)
+                            cudaNo指代gpu索引，从0开始
