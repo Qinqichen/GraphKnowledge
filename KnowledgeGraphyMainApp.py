@@ -18,13 +18,14 @@ from CoupleModel.CoupleModel import app as CoupleModel
 from DeepModel.DeepModel import app as DeepModel
 from KnowledgeModel.KnowledgeModel import app as KnowledgeModel
  
-
+from CoupleModel.QuestionDB import app as QuestionDB
 
 app = DispatcherMiddleware(controller,
                            {
                                cfgG.CoupleModel_preURL:CoupleModel,
                                cfgG.DeepModel_preURL:DeepModel,
-                               cfgG.KnowledgeModel_preURL:KnowledgeModel
+                               cfgG.KnowledgeModel_preURL:KnowledgeModel,
+                               cfgG.QuestionDB_preURL:QuestionDB
                             })
 
 

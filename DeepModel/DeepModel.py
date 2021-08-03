@@ -1,8 +1,6 @@
 import flask
-import pandas as pd
-import torch
 from flask import request,jsonify
-from ModelClass import ModelClass 
+from .ModelClass import ModelClass 
 
 # 测试
 """

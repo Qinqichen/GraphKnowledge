@@ -67,69 +67,68 @@ def getResultByPost(question):
     # 获取数据
     r = requests.get("http://127.0.0.1:1234/knowledgeGraphServer/getAnswer",json=questionJson)
     # r = requests.get("http://localhost:1234/getAnswer")
+    # r = requests.get("http://127.0.0.1:1234/QuestionDB/testSelect",json=questionJson)
+    # r = requests.get("http://localhost:1234/QuestionDB/testSelect",json=questionJson)
+    # r = requests.get("http://127.0.0.1:1234/CoupleModel/getCoupleModelData",json=questionJson)
 
-
-    print(r)
     
     return r.json()
 
 if __name__ == '__main__':
     
-    result = getResultByPost("问答对模型有答案" )
+    result = getResultByPost("ttt" )
 
-    print("--------问答对模型有答案--------")
+    print("----------------------")
 
-    for error in result['error']:
-        
-        print(error)
-            
     
     print(result['view'])
+    
+    print(result['error'])
    
     print("----------------------------------------\n")
 
     
-    result = getResultByPost("正常问题" )
+    # result = getResultByPost("正常问题" )
 
-    print("----------正常问题----------")
+    # print("----------正常问题----------")
 
-    for error in result['error']:
+    # for error in result['error']:
         
-        print(error)
+    #     print(error)
             
     
-    print(result['view'])
+    # print(result['view'])
    
-    print("----------------------------------------\n")
+    # print("----------------------------------------\n")
 
 
 
-    result = getResultByPost("深度模型出错" )
+    # result = getResultByPost("深度模型出错" )
 
-    print("---------深度模型出错---------")
+    # print("---------深度模型出错---------")
 
-    for error in result['error']:
+    # for error in result['error']:
         
-        print(error)
+    #     print(error)
             
     
-    print(result['view'])
+    # print(result['view'])
    
-    print("----------------------------------------\n")
+    # print("----------------------------------------\n")
 
 
 
-    result = getResultByPost("图谱模型出错" )
+    # result = getResultByPost("图谱模型出错" )
 
-    print("------------图谱模型出错------------")
+    # print("------------图谱模型出错------------")
 
-    for error in result['error']:
+    # for error in result['error']:
         
-        print(error)
+    #     print(error)
             
     
-    print(result['view'])
+    # print(result['view'])
    
-    print("----------------------------------------\n")
+    # print("----------------------------------------\n")
 
 

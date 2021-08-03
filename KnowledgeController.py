@@ -33,7 +33,7 @@ def getAnswer():
     
     json_data = request.get_json()
     
-    app.logger.warning("sdfsdf")
+    
     app.logger.warning(json_data)
     
     question = {

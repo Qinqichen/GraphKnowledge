@@ -1,6 +1,7 @@
-from flask import Flask,render_template,request
+from flask import Flask,render_template,request,jsonify
 from flask_sqlalchemy import SQLAlchemy
-import config
+import json
+from . import config
 
 app = Flask(__name__)  # 创建Flask对象
 app.config.from_object(config)  # 关联config.py文件进来
@@ -11,6 +12,10 @@ class QA(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     question = db.Column(db.String)
     answer = db.Column(db.String)
+
+
+
+
 
 @app.route('/')
 def index():
@@ -58,6 +63,32 @@ def a():
     qa.question = '888'
     db.session.qa()
     return "success"
+
+
+# 测试代码  qqc  add 
+# 我修改了数据库的密码，你测试的时候记得改回来
+@app.route('/testSelect')
+def testSelect():
+    
+    question = request.get_json()['question']
+    
+    result = {
+        'question':question,
+        'answer':'',
+        'have':False
+        }
+    
+    qas = QA.query.filter(QA.question == question).all()
+   
+    if len(qas) == 0 :
+        return json.dumps(result)
+        
+    result['answer'] = qas[0].answer
+    result['have'] = True
+    
+    return jsonify(result)
+
+# end  qqc add 
 
 
 
