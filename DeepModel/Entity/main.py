@@ -171,6 +171,13 @@ def evaluate(data, model, name, nbest=None):
             ## select the best sequence to evalurate
             tag_seq = nbest_tag_seq[:,:,0]
         else:
+            # print(batch_word)
+            # print(batch_features)
+            # print(batch_wordlen)
+            # print(batch_char)
+            # print(batch_charlen)
+            # print(batch_charrecover)
+            # print(mask)
             tag_seq = model(batch_word, batch_features, batch_wordlen, batch_char, batch_charlen, batch_charrecover, mask,data)
         # print("tag:",tag_seq)
         pred_label, gold_label = recover_label(tag_seq, batch_label, mask, data.label_alphabet, batch_wordrecover, data.sentence_classification)
@@ -305,7 +312,8 @@ def batchify_sentence_classification_with_label(input_batch_list, gpu, if_train=
     feature_seq_tensors = []
     for idx in range(feature_num):
         feature_seq_tensors.append(torch.zeros((batch_size, max_seq_len),requires_grad =  if_train).long())
-    mask = torch.zeros((batch_size, max_seq_len), requires_grad =  if_train).byte()
+    mask = torch.zeros((batch_size, max_seq_len), requires_grad =  if_train).bool()
+    # mask = torch.zeros((batch_size, max_seq_len), requires_grad =  if_train).byte()
     label_seq_tensor = torch.LongTensor(labels)
     # exit(0)
     for idx, (seq,  seqlen) in enumerate(zip(words,  word_seq_lengths)):
@@ -358,7 +366,7 @@ def train(data):
     #data.show_data_summary()
     save_data_name = data.model_dir +".dset"
     data.save(save_data_name)
-
+    
     model = SeqLabel(data)
 
     # for p in model.parameters():
@@ -395,9 +403,13 @@ def train(data):
     previous_score = 0
     current_score = 0
     lr = data.HP_lr
-    # data.HP_iteration = 1
+    
+    # 测试语句
+    data.HP_iteration = 1
     ## start training
+    print('data.HP_iteration:'+str(data.HP_iteration))
     for idx in range(data.HP_iteration):
+        print('idx------'+str(idx))
         time_all = time.time()
         data.idx = idx+1
         epoch_start = time.time()
@@ -431,7 +443,13 @@ def train(data):
         batch_id = 0
         train_num = len(data.train_Ids)
         total_batch = train_num//batch_size+1
+        print('total_batch:' + str(total_batch))
         for batch_id in range(total_batch):
+            
+            if batch_id % 100 == 0 :
+                print('batch_id------'+str(batch_id))
+            if batch_id == total_batch:
+                print('batch_id------'+str(batch_id))
             model.zero_grad()
             optimizer.zero_grad()
             #lm sents
@@ -466,8 +484,11 @@ def train(data):
                 sample_loss = 0
             loss.backward()
             if data.whether_clip_grad:
-                from torch.nn.utils import clip_grad_norm
-                clip_grad_norm(model.parameters(), data.clip_grad)
+                # qqc do change for new version
+                # from torch.nn.utils import clip_grad_norm
+                # clip_grad_norm(model.parameters(), data.clip_grad)
+                from torch.nn.utils import clip_grad_norm_
+                clip_grad_norm_(model.parameters(), data.clip_grad)
             optimizer.step()
 
         temp_cost = temp_time - temp_start
@@ -540,11 +561,16 @@ def train(data):
         time_all_finish = time.time()
         time_use = time_all_finish-time_all
         print("用时:%.2fs",time_use)
+        
+    # 测试语句
+    model_name = data.model_dir +'.'+ 'test' + ".model"
+    print("Save current best model in file:", model_name)
+    torch.save(model.state_dict(), model_name)
 
 
 
 def load_model_decode(data, name):
-    print("Load Model from file: ", data.model_dir)
+    print("Load Model from file: ", data.load_model_dir)
 
     model = SeqLabel(data)
     # model = SeqModel(data)
@@ -681,7 +707,7 @@ if __name__ == '__main__':
     #     print("Seed num:",seed_num)
     # else:
     #     data.read_config(args.config)
-    data.show_data_summary()
+    # data.show_data_summary()
     status = data.status.lower()
      
     # 测试
@@ -699,16 +725,23 @@ if __name__ == '__main__':
         train(data)
     elif status == 'decode':
         print("MODEL: decode")
+        
         data.load(data.dset_dir)
+        
         data.decode_dir = "sample_data/decode"
         # data.read_config(args.config)
         print(data.raw_dir)
         # exit(0)
         data.show_data_summary()
+        print( data.raw_dir)
         data.build_alphabet(data.raw_dir)
         data.fix_alphabet()
         data.generate_instance('raw')
         print("nbest: %s"%(data.nbest))
+        
+        # 测试
+        data.load_model_dir = 'sample_data/lstm_att.test.model'
+        
         decode_results, pred_scores = load_model_decode(data, 'raw')
         if data.nbest and not data.sentence_classification:
             data.write_nbest_decoded_results(decode_results, pred_scores, 'raw')

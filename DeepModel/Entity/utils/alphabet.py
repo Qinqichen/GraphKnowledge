@@ -62,7 +62,9 @@ class Alphabet:
         # if self.label:
         #     return len(self.instances)
         # else:
-        return len(self.instances) + 1
+        # qqc  修改
+        # return len(self.instances) + 1
+        return len(self.instances)
 
     def iteritems(self):
         if sys.version_info[0] < 3:  # If using python3, dict item access uses different syntax

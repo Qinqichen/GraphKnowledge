@@ -53,7 +53,6 @@ def doCoupleModel():
 
     return jsonify(showJson)
 
-# 将预测函数定义为一个端点
 @app.route("/saveQuestionCouple", methods=["GET","POST"])
 def saveQuestionCouple():
     json_data = request.get_json()
