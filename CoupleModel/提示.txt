@@ -1,0 +1,13 @@
+我修改了数据库的密码，你记得测试的时候改回来
+流程
+controller调用CoupleModel
+couplemodel 调用 databaseController 访问 server(我改了名字，改成了QuestionDB)
+
+
+在查询后，要根据之前的交互数据的json格式做个规范，然后返回，我写了个testSelect很简陋，你看一下就好
+
+浏览器访问的方式可以在你的毕设中使用，做一款管理员管理的系统，前端页面有现成的框架的，表格之类的都有现成插件
+
+测试可以在上一级的sendRequestTest中的主函数中测试，返回数据尽量以json的格式，这样的话就不用以render的形式返回预制网页，在网页中可以方便使用jquery的ajax异步获取数据，菜鸟教程网站可以查
+
+

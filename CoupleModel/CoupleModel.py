@@ -1,19 +1,22 @@
 import flask
-import pandas as pd
-import torch
-from flask import request,jsonify
+from flask import request,jsonify 
+from .DatabaseController import DatabaseController as DBController
+
 
 # 实例化 flask
 app = flask.Flask(__name__)
 
-# 加载模型
-#model = torch.load('modelname')
+
 
 # 将预测函数定义为一个端点
 @app.route("/getCoupleModelData", methods=["GET","POST"])
 def doCoupleModel():
     json_data = request.get_json()
-    print(json_data)
+    
+    
+    # json_data = {
+    #         'question': 'ttt'
+    #     }
 
     '''
     
@@ -22,29 +25,27 @@ def doCoupleModel():
                 }
 
     '''
-
     data = {
-         "id": 2,
+        "id": 2,
         "name": "问答对模型视图",
-        "question": "青花缠枝牡丹纹罐是什么朝代得？",
-        "answer": "问答对模型的数据库答案",
+        "question": json_data['question'],
+        "answer": "",
         "have":False
     }
-    
-    
-    
-    error = { "id":2,
-             "type":"nullError",
-             "description":"无数据",
-             "model":"问答对模型测试",
-             "isError":True
+    error = { "id":-1,
+             "type":"",
+             "description":"",
+             "model":"问答对模块",
+             "isError":False
              }
-    # 测试语句
-    if json_data['question'] == '问答对模型有答案' :
-        
-        data['hava'] = True
-        
-        error['isError'] = False
+    
+    # TODO:待修改 添加错误类型
+    dataFromDB = DBController.QuestionCoupleDB().selectByQuestion(json_data)
+    
+    data['answer'] = dataFromDB['answer']
+    data['have'] = dataFromDB['have']
+    
+    
     
     showJson = {
         "view": data,
@@ -53,7 +54,6 @@ def doCoupleModel():
 
     return jsonify(showJson)
 
-# 将预测函数定义为一个端点
 @app.route("/saveQuestionCouple", methods=["GET","POST"])
 def saveQuestionCouple():
     json_data = request.get_json()
@@ -74,3 +74,7 @@ def saveQuestionCouple():
   
 
     return jsonify("保存成功")
+
+
+if __name__ == '__main__':
+    app.run(port=1234, debug=True)

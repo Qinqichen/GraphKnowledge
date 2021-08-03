@@ -202,12 +202,13 @@ class Data:
 
 
     def initial_feature_alphabets(self):
+        print('start initial_feature_alphabets')
         if self.sentence_classification:
             ## if sentence classification data format, splited by '\t'
             items = open(self.train_dir,'r').readline().strip('\n').split('\t')
         else:
             ## if sequence labeling data format i.e. CoNLL 2003, split by ' '
-            items = open(self.train_dir,'r').readline().strip('\n').split()
+            items = open(self.train_dir,'r',encoding='utf-8').readline().strip('\n').split()
         total_column = len(items)
         if total_column > 2:
             for idx in range(1, total_column-1):
@@ -228,9 +229,13 @@ class Data:
                     self.feature_emb_dirs[idx] = self.feat_config[self.feature_name[idx]]['emb_dir']
                     self.norm_feature_embs[idx] = self.feat_config[self.feature_name[idx]]['emb_norm']
         # exit(0)
+        print('end initial_feature_alphabets')
 
 
     def build_alphabet(self, input_file):
+        
+        print('start build_alphabet')
+        print(input_file)
         in_lines = open(input_file,'r',encoding="utf-8").readlines()
         for line in in_lines:
             if len(line) > 2:
@@ -329,6 +334,8 @@ class Data:
 
 
     def generate_instance(self, name):
+        print('start generate_instance')
+        print(name)
         self.fix_alphabet()
         if name == "train":
             self.train_texts, self.train_Ids,self.max_scent_len = read_instance(self.train_dir, self.word_alphabet, self.char_alphabet, self.feature_alphabets, self.label_alphabet, self.number_normalized, self.MAX_SENTENCE_LENGTH, self.sentence_classification, self.split_token,char_padding_size=-1, char_padding_symbol = '</pad>',max_sent_len=self.max_scent_len)
@@ -341,6 +348,7 @@ class Data:
         else:
             print("Error: you can only generate train/dev/test instance! Illegal input:%s"%(name))
 
+        print('end     '+str(name))
 
     def write_decoded_results(self, predict_results, name):
         
