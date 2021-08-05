@@ -1,0 +1,6 @@
+main.py用于训练模型，模型的参数在models中config中
+test.py用于预测
+qqc对代码做了修改，已经不是原版了
+
+
+原版：https://github.com/luopeixiang/named_entity_recognition

@@ -16,6 +16,7 @@ def get_ner_fmeasure(golden_lists, predict_lists, label_type="BMES"):
         # word_list = sentence_lists[idx]
         golden_list = golden_lists[idx]
         predict_list = predict_lists[idx]
+        print(golden_list)
         for idy in range(len(golden_list)):
             if golden_list[idy] == predict_list[idy]:
                 right_tag += 1

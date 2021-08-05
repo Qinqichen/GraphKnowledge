@@ -31,6 +31,7 @@ class Alphabet:
 
     def add(self, instance):
         if instance not in self.instance2index:
+        # if instance not in self.instance2index and self.keep_growing:
             self.instances.append(instance)
             self.instance2index[instance] = self.next_index
             self.next_index += 1
@@ -62,9 +63,11 @@ class Alphabet:
         # if self.label:
         #     return len(self.instances)
         # else:
-        # qqc  修改
         # return len(self.instances) + 1
+        
+        # 改
         return len(self.instances)
+    
 
     def iteritems(self):
         if sys.version_info[0] < 3:  # If using python3, dict item access uses different syntax

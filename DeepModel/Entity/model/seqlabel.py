@@ -29,6 +29,7 @@ class SeqLabel(nn.Module):
 
 
     def forward(self, word_inputs, feature_inputs, word_seq_lengths, char_inputs, char_seq_lengths, char_seq_recover, mask,data):
+        
         outs = self.word_hidden(word_inputs,feature_inputs, word_seq_lengths, char_inputs, char_seq_lengths, char_seq_recover,data)
         scores, tag_seq = self.crf._viterbi_decode(outs, mask)
         return tag_seq

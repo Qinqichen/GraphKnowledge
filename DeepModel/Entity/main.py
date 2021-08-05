@@ -184,7 +184,10 @@ def evaluate(data, model, name, nbest=None):
         pred_results += pred_label
         gold_results += gold_label
     decode_time = time.time() - start_time
-    speed = len(instances)/decode_time
+    if decode_time == 0 :
+        speed = 0 
+    else:
+        speed = len(instances)/decode_time
     acc, p, r, f = get_ner_fmeasure(gold_results, pred_results, data.tagScheme)
     if nbest and not data.sentence_classification:
         return speed, acc, p, r, f, nbest_pred_results, pred_scores
@@ -728,16 +731,44 @@ if __name__ == '__main__':
         
         data.load(data.dset_dir)
         
-        data.decode_dir = "sample_data/decode"
+        data.decode_dir = "sample_data/decode.txt"
         # data.read_config(args.config)
         print(data.raw_dir)
         # exit(0)
         data.show_data_summary()
-        print( data.raw_dir)
+        
+        
+        print(data.raw_dir)
         data.build_alphabet(data.raw_dir)
         data.fix_alphabet()
         data.generate_instance('raw')
-        print("nbest: %s"%(data.nbest))
+        # print('raw_ids')
+        # print(data.raw_Ids)
+        
+        # data.raw_Ids[0][0] = [0,1,2]
+        
+        # print('raw_ids')
+        # print(data.raw_Ids)
+        # # [[[3824, 3825, 3826],
+        # #   [[], [], []],
+        # #   [[224, 20, 2, 3, 371, 39, 19], 
+        # #    [224, 809, 2, 3, 449, 450], 
+        # #    [63, 34, 237, 322, 234]], 
+        # #   [14, 15, 16]]]
+        # # [[['中华人民共和国', '中央人民政府', '今天成立了'], 
+        # #   [[], [], []], 
+        # #   [['中', '华', '人', '民', '共', '和', '国'],
+        # #    ['中', '央', '人', '民', '政', '府'],
+        # #    ['今', '天', '成', '立', '了']],
+        # #   ['中华人民共和国', '中央人民政府', '今天成立了']]]
+        # print('raw_texts')
+        print(data.raw_texts)
+        # print('raw_Ids,len')
+        # print(len(data.raw_Ids))
+        
+        # print("nbest: %s"%(data.nbest))
+        
+        # print(data.word_alphabet.get_instance(3824))
         
         # 测试
         data.load_model_dir = 'sample_data/lstm_att.test.model'

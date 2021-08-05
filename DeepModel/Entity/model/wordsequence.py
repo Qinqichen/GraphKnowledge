@@ -34,6 +34,9 @@ class WordSequence(nn.Module):
 
     def forward(self, word_inputs, feature_inputs, word_seq_lengths, char_inputs, char_seq_lengths, char_seq_recover,data):
 
+        print('wordsequence-------------word_inputs')
+        print(word_inputs)
+        print('end--------wordsequence-------------word_inputs')
         word_represent = self.wordrep(word_inputs)
         packed_words = pack_padded_sequence(word_represent, word_seq_lengths.cpu().numpy(), True)
         hidden = None

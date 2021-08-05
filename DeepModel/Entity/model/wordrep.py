@@ -12,7 +12,16 @@ class WordRep(nn.Module):
         self.batch_size = data.HP_batch_size
         self.input_size = data.word_emb_dim
         self.embedding_dim = data.word_emb_dim
+        
+        # print(data.pretrain_word_embedding.size)
+        
+        # self.word_embedding = nn.Embedding(3824, self.embedding_dim).requires_grad_(data.emb_grad)
         self.word_embedding = nn.Embedding(data.word_alphabet.size(), self.embedding_dim).requires_grad_(data.emb_grad)
+
+        print(data.pretrain_word_embedding.size)
+        
+        print(self.word_embedding)
+        
         if data.pretrain_word_embedding is not None:
             self.word_embedding.weight.data.copy_(torch.from_numpy(data.pretrain_word_embedding))
         else:
@@ -34,6 +43,9 @@ class WordRep(nn.Module):
 
 
     def forward(self, word_inputs):
+        print('wordrep-------------word_inputs')
+        print(word_inputs)
+        print('end--------wordrep-------------word_inputs')
         word_embs =  self.word_embedding(word_inputs)
         word_list = [word_embs]
         word_embs = torch.cat(word_list, 2)

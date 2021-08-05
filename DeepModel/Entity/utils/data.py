@@ -347,7 +347,7 @@ class Data:
             self.raw_texts, self.raw_Ids,_ = read_instance(self.raw_dir, self.word_alphabet, self.char_alphabet, self.feature_alphabets, self.label_alphabet, self.number_normalized, self.MAX_SENTENCE_LENGTH, self.sentence_classification, self.split_token)
         else:
             print("Error: you can only generate train/dev/test instance! Illegal input:%s"%(name))
-
+   
         print('end     '+str(name))
 
     def write_decoded_results(self, predict_results, name):
@@ -365,7 +365,7 @@ class Data:
         else:
             print("Error: illegal name during writing predict result, name should be within train/dev/test/raw !")
         assert(sent_num == len(content_list))
-        fout = open(self.decode_dir,'w')
+        fout = open(self.decode_dir,'w',encoding='utf-8')
         for idx in range(sent_num):
             if self.sentence_classification:
                 fout.write(" ".join(content_list[idx][0])+"\t"+predict_results[idx]+ '\n')
@@ -373,7 +373,8 @@ class Data:
                 sent_length = len(predict_results[idx])
                 for idy in range(sent_length):
                     ## content_list[idx] is a list with [word, char, label]
-                    fout.write(str(content_list[idx][0][idy].encode('utf-8')) + " " + predict_results[idx][idy] + '\n')
+                    # fout.write(str(content_list[idx][0][idy].encode('utf8')) + " " + predict_results[idx][idy] + '\n')
+                    fout.write(str(content_list[idx][0][idy]) + " " + predict_results[idx][idy] + '\n')
                 fout.write('\n')
         fout.close()
         print("Predict %s result has been written into file. %s"%(name, self.decode_dir))
@@ -395,7 +396,7 @@ class Data:
     def write_nbest_decoded_results(self, predict_results, pred_scores, name):
         ## predict_results : [whole_sent_num, nbest, each_sent_length]
         ## pred_scores: [whole_sent_num, nbest]
-        fout = open(self.decode_dir,'w')
+        fout = open(self.decode_dir,'w',encoding='utf8')
         sent_num = len(predict_results)
         content_list = []
         if name == 'raw':
