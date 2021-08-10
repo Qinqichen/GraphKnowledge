@@ -1,7 +1,8 @@
 # 暂时忽略以下几个大文件
 /DeepModel/Relation/*
 /DeepModel/Entity/sample_data/*
-
+/DeepModel/EntitySource/sample_data/*
+!/DeepModel/EntitySource/sample_data/*.bmes
 
 #部分缓存文件
 */__pycache__/*

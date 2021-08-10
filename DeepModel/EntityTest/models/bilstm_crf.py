@@ -9,6 +9,11 @@ from .util import tensorized, sort_by_lengths, cal_loss, cal_lstm_crf_loss
 from .config import TrainingConfig, LSTMConfig
 from .bilstm import BiLSTM
 
+import sys
+sys.path.append("..")
+
+from utils import save_model
+
 
 class BILSTM_Model(object):
     def __init__(self, vocab_size, out_size, crf=True):
@@ -131,6 +136,11 @@ class BILSTM_Model(object):
                 print("保存模型...")
                 self.best_model = deepcopy(self.model)
                 self._best_val_loss = val_loss
+                # qqc 添加
+                # TODO:新添加内容
+                model_name = "bilstm_crf" if self.crf else "bilstm"
+                save_model(self, "./ckpts/"+model_name+".pkl")
+                # end TODO
 
             return val_loss
 

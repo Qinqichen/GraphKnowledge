@@ -1,0 +1,7 @@
+Entity文件夹是第一次代码
+EntityTest是第二次github差的代码
+EntitySource 是第三次代码，第一次的源代码
+
+EntitySource 我换了test，train，dev三个文件，可以训练，可以预测，我预测有时候会出错，似乎有些字不在训练的集合内会出错。
+训练个模型试试，可能是我只迭代了一次的原因，
+此外，在Entity中的训练用的文件，只有train的标记是正确的，dev跟test的标记已经是错的离谱了，这可能是之前跑不出结果的原因，待定。
