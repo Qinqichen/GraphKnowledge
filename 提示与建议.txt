@@ -10,4 +10,6 @@
 做了个简单的前端界面
 
 
-
+8.30
+启动KnowledgeGraphyMainApp.py之后
+可以去 http://localhost:1234/web/ 访问web网页首页，去测试问答对话框是否正常运行

@@ -93,11 +93,13 @@ def doDeepModel(json_data):
         data['relation'] = relation['relation']
     
     
+    # TODO: 测试代码，后期要修改回
+    
     error = {"id":-1,
              "type":"",
-             "description":"",
+             "description":"深度模型测试错误",
              "model":"深度模型",
-             "isError":False
+             "isError":True
              }
     
     showJson = {

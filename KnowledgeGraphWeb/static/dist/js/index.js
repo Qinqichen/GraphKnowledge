@@ -17,6 +17,7 @@ $("#submitQuestion").off("click").on("click",function () {
     let contentList = $("#questionContentList");
     if (question === "clear"){
         contentList.empty();
+        $("#inputQuestion").val("");
         return false;
     }
     $.get("/web/static/component/userMessage.html",function (data) {

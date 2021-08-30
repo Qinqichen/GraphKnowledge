@@ -77,7 +77,7 @@ def getAnswer():
                     
                 errorView.append(errorKnowledge)
         else:
-            errorView.append(errorCouple)
+            errorView.append(errorDeep)
             
 
     # 这里返回数据
