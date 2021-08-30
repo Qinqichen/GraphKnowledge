@@ -1,32 +1,307 @@
 {'question': 'aaa'}
 进入CoupleModel
-getAnswer Time: 4.1984124183654785
-getAnswer Time: 4.200381517410278
+Exception on /getCoupleModelData [GET]
+Traceback (most recent call last):
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:\Edit\Python\python38\CoupleModel\CoupleModel.py", line 47, in doCoupleModel
+    dataFromDB = DBController.QuestionCoupleDB().selectByQuestion(json_data)
+  File "D:\Edit\Python\python38\CoupleModel\DatabaseController.py", line 40, in selectByQuestion
+    r = questionApp.SelectByQuestion(questionJson)
+AttributeError: 'Flask' object has no attribute 'SelectByQuestion'
+Exception on /knowledgeGraphServer/getAnswer [POST]
+Traceback (most recent call last):
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:\Edit\Python\python38\KnowledgeController.py", line 50, in getAnswer
+    coupleResult , errorCouple = doCoupleModel(question)
+  File "D:\Edit\Python\python38\KnowledgeController.py", line 125, in doCoupleModel
+    view = r.json()['view']
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\requests\models.py", line 900, in json
+    return complexjson.loads(self.text, **kwargs)
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\json\__init__.py", line 357, in loads
+    return _default_decoder.decode(s)
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\json\decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\json\decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
 {'question': 'aaa'}
 进入CoupleModel
-doCoupleModel Time: 4.202180862426758
-getAnswer Time: 4.2041802406311035
-{'question': 'bbb'}
-进入CoupleModel
-doCoupleModel Time: 4.075044393539429
-getAnswer Time: 4.077005624771118
+Exception on /getCoupleModelData [GET]
+Traceback (most recent call last):
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:\Edit\Python\python38\CoupleModel\CoupleModel.py", line 47, in doCoupleModel
+    dataFromDB = DBController.QuestionCoupleDB().selectByQuestion(json_data)
+  File "D:\Edit\Python\python38\CoupleModel\DatabaseController.py", line 40, in selectByQuestion
+    r = questionApp.SelectByQuestion(questionJson)
+AttributeError: 'Flask' object has no attribute 'SelectByQuestion'
+Exception on /knowledgeGraphServer/getAnswer [POST]
+Traceback (most recent call last):
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:\Edit\Python\python38\KnowledgeController.py", line 50, in getAnswer
+    coupleResult , errorCouple = doCoupleModel(question)
+  File "D:\Edit\Python\python38\KnowledgeController.py", line 125, in doCoupleModel
+    view = r.json()['view']
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\requests\models.py", line 900, in json
+    return complexjson.loads(self.text, **kwargs)
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\json\__init__.py", line 357, in loads
+    return _default_decoder.decode(s)
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\json\decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\json\decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
 {'question': 'aaa'}
 进入CoupleModel
-doCoupleModel Time: 4.210752725601196
-getAnswer Time: 4.211749792098999
+Exception on /getCoupleModelData [GET]
+Traceback (most recent call last):
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\sqlalchemy\util\_collections.py", line 1008, in __call__
+    return self.registry[key]
+KeyError: <greenlet.greenlet object at 0x0000024687CF0EB0 (otid=0x0000024687CF1680) current active started main>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:\Edit\Python\python38\CoupleModel\CoupleModel.py", line 47, in doCoupleModel
+    dataFromDB = DBController.QuestionCoupleDB().selectByQuestion(json_data)
+  File "D:\Edit\Python\python38\CoupleModel\DatabaseController.py", line 40, in selectByQuestion
+    r = QuestionDB.SelectByQuestion(questionJson)
+  File "D:\Edit\Python\python38\CoupleModel\QuestionDB.py", line 96, in SelectByQuestion
+    questionAnswer = QuestionCouple.query.filter(QuestionCouple.question == question).first()
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask_sqlalchemy\__init__.py", line 552, in __get__
+    return type.query_class(mapper, session=self.sa.session())
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\sqlalchemy\orm\scoping.py", line 47, in __call__
+    return self.registry()
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\sqlalchemy\util\_collections.py", line 1010, in __call__
+    return self.registry.setdefault(key, self.createfunc())
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\sqlalchemy\orm\session.py", line 4101, in __call__
+    return self.class_(**local_kw)
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask_sqlalchemy\__init__.py", line 175, in __init__
+    track_modifications = app.config['SQLALCHEMY_TRACK_MODIFICATIONS']
+KeyError: 'SQLALCHEMY_TRACK_MODIFICATIONS'
+Exception on /knowledgeGraphServer/getAnswer [POST]
+Traceback (most recent call last):
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:\Edit\Python\python38\KnowledgeController.py", line 50, in getAnswer
+    coupleResult , errorCouple = doCoupleModel(question)
+  File "D:\Edit\Python\python38\KnowledgeController.py", line 125, in doCoupleModel
+    view = r.json()['view']
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\requests\models.py", line 900, in json
+    return complexjson.loads(self.text, **kwargs)
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\json\__init__.py", line 357, in loads
+    return _default_decoder.decode(s)
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\json\decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\json\decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
 {'question': 'aaa'}
 进入CoupleModel
-coupleModel内部调用 Time: 2.1462066173553467
-doCoupleModel Time: 4.199628591537476
-getAnswer Time: 4.2006144523620605
+Exception on /getCoupleModelData [GET]
+Traceback (most recent call last):
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\sqlalchemy\util\_collections.py", line 1008, in __call__
+    return self.registry[key]
+KeyError: <greenlet.greenlet object at 0x000001DB069B1E00 (otid=0x000001DB069AF8C0) current active started main>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:\Edit\Python\python38\CoupleModel\CoupleModel.py", line 47, in doCoupleModel
+    dataFromDB = DBController.QuestionCoupleDB().selectByQuestion(json_data)
+  File "D:\Edit\Python\python38\CoupleModel\DatabaseController.py", line 40, in selectByQuestion
+    r = QuestionDB.SelectByQuestion(questionJson)
+  File "D:\Edit\Python\python38\CoupleModel\QuestionDB.py", line 96, in SelectByQuestion
+    questionAnswer = QuestionCouple.query.filter(QuestionCouple.question == question).first()
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask_sqlalchemy\__init__.py", line 552, in __get__
+    return type.query_class(mapper, session=self.sa.session())
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\sqlalchemy\orm\scoping.py", line 47, in __call__
+    return self.registry()
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\sqlalchemy\util\_collections.py", line 1010, in __call__
+    return self.registry.setdefault(key, self.createfunc())
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\sqlalchemy\orm\session.py", line 4101, in __call__
+    return self.class_(**local_kw)
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask_sqlalchemy\__init__.py", line 175, in __init__
+    track_modifications = app.config['SQLALCHEMY_TRACK_MODIFICATIONS']
+KeyError: 'SQLALCHEMY_TRACK_MODIFICATIONS'
+Exception on /knowledgeGraphServer/getAnswer [POST]
+Traceback (most recent call last):
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:\Edit\Python\python38\KnowledgeController.py", line 50, in getAnswer
+    coupleResult , errorCouple = doCoupleModel(question)
+  File "D:\Edit\Python\python38\KnowledgeController.py", line 125, in doCoupleModel
+    view = r.json()['view']
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\requests\models.py", line 900, in json
+    return complexjson.loads(self.text, **kwargs)
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\json\__init__.py", line 357, in loads
+    return _default_decoder.decode(s)
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\json\decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\json\decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
 {'question': 'aaa'}
 进入CoupleModel
-coupleModel内部调用 Time: 2.147163152694702
-doCoupleModel Time: 4.195343494415283
-getAnswer Time: 4.196340799331665
+Exception on /SelectByQuestion [GET]
+Traceback (most recent call last):
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+TypeError: SelectByQuestion() missing 1 required positional argument: 'questionJSON'
+Exception on /getCoupleModelData [GET]
+Traceback (most recent call last):
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:\Edit\Python\python38\CoupleModel\CoupleModel.py", line 47, in doCoupleModel
+    dataFromDB = DBController.QuestionCoupleDB().selectByQuestion(json_data)
+  File "D:\Edit\Python\python38\CoupleModel\DatabaseController.py", line 45, in selectByQuestion
+    return r.json()
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\requests\models.py", line 900, in json
+    return complexjson.loads(self.text, **kwargs)
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\json\__init__.py", line 357, in loads
+    return _default_decoder.decode(s)
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\json\decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\json\decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+Exception on /knowledgeGraphServer/getAnswer [POST]
+Traceback (most recent call last):
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:\Edit\Python\python38\KnowledgeController.py", line 50, in getAnswer
+    coupleResult , errorCouple = doCoupleModel(question)
+  File "D:\Edit\Python\python38\KnowledgeController.py", line 125, in doCoupleModel
+    view = r.json()['view']
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\requests\models.py", line 900, in json
+    return complexjson.loads(self.text, **kwargs)
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\json\__init__.py", line 357, in loads
+    return _default_decoder.decode(s)
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\json\decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\json\decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
 {'question': 'aaa'}
 进入CoupleModel
-查询数据库 Time: 0.09126830101013184
-coupleModel内部调用 Time: 2.13739013671875
-doCoupleModel Time: 4.198024272918701
-getAnswer Time: 4.199021577835083
+查询数据库 Time: 0.20844197273254395
+coupleModel内部调用 Time: 2.2521841526031494
+doCoupleModel Time: 4.302947044372559
+getAnswer Time: 4.304938793182373

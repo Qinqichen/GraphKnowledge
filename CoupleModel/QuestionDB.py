@@ -1,18 +1,18 @@
-from flask import Flask,render_template,request,jsonify
+from flask import Flask,render_template,request,jsonify,Blueprint
 from flask_sqlalchemy import SQLAlchemy
 import json
-from . import config
-import time
-import logging
 
-handler = logging.FileHandler("flask.log")
+import sys
+sys.path.append('..')
+from init import db
 
 
-app = Flask(__name__)  # 创建Flask对象
-app.config.from_object(config)  # 关联config.py文件进来
-db = SQLAlchemy(app)  # 建立和数据库的关系映射
+questionDB_Blueprint = Blueprint("questionDB", __name__ )
 
-app.logger.addHandler(handler)
+# questionDB_Blueprint.config.from_object(config)  # 关联config.py文件进来
+
+# db = SQLAlchemy(questionDB_Blueprint)  # 建立和数据库的关系映射
+
 class QA(db.Model):
     __tablename__ = 'qa'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -32,11 +32,11 @@ class QuestionCouple(db.Model):
 
 
 
-@app.route('/')
+@questionDB_Blueprint.route('/')
 def index():
     return render_template('login.html')
 
-@app.route('/login', methods = ["POST"])
+@questionDB_Blueprint.route('/login', methods = ["POST"])
 def login():
     username = request.form.get("username")
     password = request.form.get("pwd")
@@ -45,7 +45,7 @@ def login():
     else:
         return render_template('login.html', msg="error")
 #查询操作
-@app.route('/select/<string:a>')  # 跳转测试。
+@questionDB_Blueprint.route('/select/<string:a>')  # 跳转测试。
 def select(a):
     qa = QA.query.filter(QA.question == a).first()
     question = qa.question
@@ -56,7 +56,7 @@ def select(a):
     return render_template('test.html',question = question, answer = answer)
 
 #增
-@app.route('/add')
+@questionDB_Blueprint.route('/add')
 def add():
     qa = QA(question='1adad', answer='1adada')
     db.session.add(qa)
@@ -64,7 +64,7 @@ def add():
     return "success"
 
 #删
-@app.route('/delete')
+@questionDB_Blueprint.route('/delete')
 def delete():
     a = QA.query.filter(QA.question == "这是问题1").first()
     db.session.delete(a)
@@ -72,7 +72,7 @@ def delete():
     return "success"
 
 #改
-@app.route('/a')
+@questionDB_Blueprint.route('/a')
 def a():
     qa = QA.query.filter(QA.question == "djakda").first()
     qa.question = '888'
@@ -81,10 +81,8 @@ def a():
 
 
 # 用问题查询答案代码
-@app.route('/SelectByQuestion')
-def SelectByQuestion():
-    startTime = time.time()
-    question = request.get_json()['question']
+@questionDB_Blueprint.route('/SelectByQuestion/<string:question>')
+def SelectByQuestion(question):
     
     result = {
         'question':question,
@@ -97,18 +95,12 @@ def SelectByQuestion():
     if questionAnswer != None:
         result['answer'] = questionAnswer.answer
         result['have'] = True
-        app.logger.warning("查询数据库 Time: "+str(time.time() - startTime))
-        return jsonify(result)
+        
     else:
         # 可以加入其他功能
         
-        app.logger.warning("查询数据库 Time: "+str(time.time() - startTime))
-        return json.dumps(result)
+        pass
+        
+    return json.dumps(result)
         
 
-# end  qqc add 
-
-
-
-if __name__ == '__main__':
-    app.run(port=1234, debug=True)

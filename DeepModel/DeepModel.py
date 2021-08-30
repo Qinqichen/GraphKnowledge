@@ -1,6 +1,11 @@
 import flask
-from flask import request,jsonify
+from flask import request , Blueprint
+import json
 from .ModelClass import ModelClass 
+
+
+deepModelController_Blueprint = Blueprint("deepModelController_Blueprint", __name__ )
+
 
 # 测试
 """
@@ -28,19 +33,22 @@ print(data)
 # 测试结束
 
 
-
-
-# 实例化 flask
-app = flask.Flask(__name__)
-
-# 加载模型
-#model = torch.load('modelname')
-
 # 将预测函数定义为一个端点
-@app.route("/getDeepModelData", methods=["GET","POST"])
+@deepModelController_Blueprint.route("/getDeepModelData", methods=["GET","POST"])
 def DeepModel():
     json_data = request.get_json()
     print(json_data)
+
+    '''
+    {#深度模型请求参数
+        "question":"青花缠枝牡丹纹罐是什么朝代得？"
+                }
+    '''
+    
+    
+    return doDeepModel(json_data)
+
+def doDeepModel(json_data):
 
     '''
     {#深度模型请求参数
@@ -70,7 +78,7 @@ def DeepModel():
     entitys,errorEntity = modelClass.doModelFunction("测试问题",1)
     if errorEntity['isError'] == True :
         showJson['error'] = errorEntity
-        return jsonify(showJson)
+        return json.dumps(showJson)
     
     for entity in entitys:
         data[entity['type']] = entity['entity']
@@ -79,7 +87,7 @@ def DeepModel():
     relations,errorRelation = modelClass.doModelFunction("测试问题",2)
     if errorRelation['isError'] == True :
         showJson['error'] = errorRelation
-        return jsonify(showJson)
+        return json.dumps(showJson)
     
     for relation in relations:
         data['relation'] = relation['relation']
@@ -97,5 +105,4 @@ def DeepModel():
         "error": error,
     }
 
-    return jsonify(showJson)
-
+    return json.dumps(showJson)

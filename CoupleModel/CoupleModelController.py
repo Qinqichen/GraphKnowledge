@@ -1,25 +1,19 @@
-import flask
-from flask import request,jsonify 
+
+from flask import request,jsonify ,Blueprint
 from .DatabaseController import DatabaseController as DBController
-import time
-import logging
+import json
 
-handler = logging.FileHandler("flask.log")
-
-# 实例化 flask
-app = flask.Flask(__name__)
+coupleModel_Blueprint = Blueprint("coupleModel", __name__)
 
 
-app.logger.addHandler(handler)
-
-# 将预测函数定义为一个端点
-@app.route("/getCoupleModelData", methods=["GET","POST"])
-def doCoupleModel():
-    json_data = request.get_json()
+# 将函数定义为一个端点
+@coupleModel_Blueprint.route("/getCoupleModelData", methods=["GET","POST"])
+def doCoupleModel(json_data):
+    # json_data = request.get_json()
     
     
     # json_data = {
-    #         'question': 'ttt'
+    #         'question': 'aaa'
     #     }
 
     '''
@@ -42,10 +36,9 @@ def doCoupleModel():
              "model":"问答对模块",
              "isError":False
              }
-    startTime = time.time()
+    
     # TODO:待修改 添加错误类型
     dataFromDB = DBController.QuestionCoupleDB().selectByQuestion(json_data)
-    app.logger.warning("coupleModel内部调用 Time: "+str(time.time() - startTime))
     data['answer'] = dataFromDB['answer']
     data['have'] = dataFromDB['have']
     
@@ -56,9 +49,9 @@ def doCoupleModel():
         "error": error,
     }
 
-    return jsonify(showJson)
+    return json.dumps(showJson)
 
-@app.route("/saveQuestionCouple", methods=["GET","POST"])
+@coupleModel_Blueprint.route("/saveQuestionCouple", methods=["GET","POST"])
 def saveQuestionCouple():
     json_data = request.get_json()
     print(json_data)
@@ -78,7 +71,3 @@ def saveQuestionCouple():
   
 
     return jsonify("保存成功")
-
-
-if __name__ == '__main__':
-    app.run(port=1234, debug=True)

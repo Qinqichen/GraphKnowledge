@@ -1,20 +1,36 @@
 import flask
-import pandas as pd
-import requests
-import torch
-from flask import request,jsonify
+# import pandas as pd
+# import requests
+# import torch
+from flask import request,Blueprint
+import json
 
-# 实例化 flask
-app = flask.Flask(__name__)
+knowledgeModel_Blueprint = Blueprint("knowledgeModel", __name__)
+
 
 # 加载模型
 #model = torch.load('modelname')
 
 # 将预测函数定义为一个端点
-@app.route("/getKnowledgeModelData", methods=["GET","POST"])
+@knowledgeModel_Blueprint.route("/getKnowledgeModelData", methods=["GET","POST"])
 def KnowledgeModel():
     json_data = request.get_json()
-    print(json_data)
+    
+    '''
+    {#图谱查询模型请求参数
+        "id": 1,
+        "name" : "深度模型视图",
+        "origin" : "青花缠枝牡丹纹罐是什么朝代得？",
+        "object" : "青花缠枝牡丹纹罐 ",
+        "subject": "朝代",
+        "relation": "是什么时间",
+    }
+    '''
+    
+    return doKnowledgeModel(json_data)
+
+def doKnowledgeModel(json_data):
+    
 
     '''
     {#图谱查询模型请求参数
@@ -52,7 +68,6 @@ def KnowledgeModel():
         "error": error,
     }
 
-    return jsonify(showJson)
-if __name__ == '__main__':
+    return json.dumps(showJson)
 
-    app.run(port=1235, debug=True)
+

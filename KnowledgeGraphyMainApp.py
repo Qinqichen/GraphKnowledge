@@ -9,34 +9,31 @@ Created on Sat Jul 17 19:13:54 2021
 
 import ConfigKnowledge as cfgG
 
-from werkzeug.serving import run_simple
+from init import app
 
-from werkzeug.middleware.dispatcher import DispatcherMiddleware
 
-from KnowledgeController import app as controller
-from CoupleModel.CoupleModel import app as CoupleModel
-from DeepModel.DeepModel import app as DeepModel
-from KnowledgeModel.KnowledgeModel import app as KnowledgeModel
+from MainController import mainController_Blueprint
+from CoupleModel.CoupleModelController import coupleModel_Blueprint
+from DeepModel.DeepModel import deepModelController_Blueprint
+from KnowledgeModel.KnowledgeModelController import knowledgeModel_Blueprint
  
-from CoupleModel.QuestionDB import app as QuestionDB
+from CoupleModel.QuestionDB import questionDB_Blueprint
 
-from KnowledgeGraphWeb.webStaticSend import app as WebIndex
+from KnowledgeGraphWeb.webStaticSendController import webStaticController_Blueprint
 
-app = DispatcherMiddleware(controller,
-                           {
-                               cfgG.CoupleModel_preURL:CoupleModel,
-                               cfgG.DeepModel_preURL:DeepModel,
-                               cfgG.KnowledgeModel_preURL:KnowledgeModel,
-                               cfgG.QuestionDB_preURL:QuestionDB,
-                               '/web':WebIndex
-                            })
 
+
+app.register_blueprint(mainController_Blueprint, url_prefix=cfgG.Controller_preURL)
+app.register_blueprint(coupleModel_Blueprint,url_prefix=cfgG.CoupleModel_preURL)
+app.register_blueprint(webStaticController_Blueprint,url_prefix="/web")
+app.register_blueprint(deepModelController_Blueprint,url_prefix=cfgG.DeepModel_preURL)
+app.register_blueprint(knowledgeModel_Blueprint,url_prefix=cfgG.KnowledgeModel_preURL)
+app.register_blueprint(questionDB_Blueprint,url_prefix=cfgG.QuestionDB_preURL)
 
 if __name__ == '__main__':
-    run_simple("localhost", cfgG.PORT_GRAPH, app,
-               use_reloader=True, use_debugger=True, use_evalex=True ,threaded=True )
-
-
+    
+    app.run(port=1234, debug=True)
+    
 
 
 

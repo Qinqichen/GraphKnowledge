@@ -7,13 +7,18 @@ Created on Tue Jun 15 11:09:43 2021
 @pythonVersion: python-3.8
 """
 
-from flask import Flask , request ,jsonify ;
+from flask import Flask , request ,jsonify,Blueprint
 import requests;
 import logging
 import ConfigKnowledge as cfgG
-import time
+import json
 
-handler = logging.FileHandler(cfgG.LOG_FILE_PATH)
+import CoupleModel.CoupleModelController as coupleMC
+import DeepModel.DeepModel as deepMC
+import KnowledgeModel.KnowledgeModelController as knowledgeMC
+
+mainController_Blueprint = Blueprint("mainController", __name__ )
+
 
 # 调用问答对模型获取答案
 # /getCoupleModelData
@@ -25,22 +30,19 @@ handler = logging.FileHandler(cfgG.LOG_FILE_PATH)
 # /getKnowledgeModelData
 
 
-app = Flask(__name__)
-
-app.logger.addHandler(handler)
-
-@app.route( cfgG.Controller_preURL + "/getAnswer",methods=['get','post'])
+@mainController_Blueprint.route("/getAnswer",methods=['get','post'])
 def getAnswer():
     
-    startTime = time.time()
     
     json_data = request.get_json()
-    
-    app.logger.warning(json_data)
     
     question = {
         "question":json_data['question']
                 }
+    
+    # question = {
+    #     "question":'aaa'
+    #             }
     
     
     resultView = []
@@ -54,6 +56,7 @@ def getAnswer():
             
         resultView.append(coupleResult)
     else:
+        
         # 问答对模型的错误信息
         if errorCouple['isError'] == True:
                     
@@ -84,12 +87,10 @@ def getAnswer():
             "error":errorView,
         }
     
-    app.logger.warning("getAnswer Time: "+str(time.time() - startTime))
-
     return jsonify(showJson)
     
 # 调用问答对模型，存储数据
-@app.route( cfgG.Controller_preURL + "/saveQuestionCouple",methods=['get','post'])
+@mainController_Blueprint.route( cfgG.Controller_preURL + "/saveQuestionCouple",methods=['get','post'])
 def saveQuestionCouple():
     
     json_data = request.get_json()
@@ -108,8 +109,7 @@ def saveQuestionCouple():
 
 # 调用问答对模型获取数据
 def doCoupleModel(questionJSON):
-    app.logger.warning("进入CoupleModel")
-    startTime = time.time()
+    
     # 需要返回给交互界面的数据
     resultJSON = {
         "id": 2,
@@ -119,24 +119,24 @@ def doCoupleModel(questionJSON):
         "have":False
     }
     
-    # 调用模型获取的数据
-    r = requests.get( cfgG.HOST_PORT + cfgG.CoupleModel_preURL + "/getCoupleModelData",json=questionJSON )
+    # 调用模型获取的数据    
+    r = coupleMC.doCoupleModel(questionJSON)
     
-    view = r.json()['view']
+    rJson = json.loads(r)
     
-    error = r.json()['error']
+    view = rJson['view']
+    
+    error = rJson['error']
     
     resultJSON['question'] = questionJSON['question']
     resultJSON['answer'] = view['answer']
     resultJSON['have'] = view['have']
     
-    app.logger.warning("doCoupleModel Time: "+str(time.time() - startTime))
     return resultJSON,error
+
 
 # 调用深度模型获取数据
 def doDeepModel(questionJSON):
-    
-    app.logger.warning("进入doDeepModel")
     
     # 需要返回给交互界面的数据
     resultJSON = {
@@ -150,11 +150,15 @@ def doDeepModel(questionJSON):
     
     
     # 调用模型获取的数据
-    r = requests.get( cfgG.HOST_PORT + cfgG.DeepModel_preURL + "/getDeepModelData",json=questionJSON )
+    # r = requests.get( cfgG.HOST_PORT + cfgG.DeepModel_preURL + "/getDeepModelData",json=questionJSON )
     
-    view = r.json()['view']
+    r = deepMC.doDeepModel(questionJSON)
     
-    error = r.json()['error']
+    rJson = json.loads(r)
+    
+    view = rJson['view']
+    
+    error = rJson['error']
     
     resultJSON['origin'] = questionJSON['question']
     resultJSON['object'] = view['object']
@@ -167,21 +171,25 @@ def doDeepModel(questionJSON):
 # 调用知识图谱模型查询数据
 def doKnowledgeModel(deepResultJSON):
     
-    app.logger.warning("进入doKnowledgeModel")
     resultJSON = {
         "id": 3,
         "name": "知识图谱模型视图",
         "CQL": "",
         "return": "",
-        "answer":""
+        "answer":"",
+        "question":deepResultJSON['origin']
     }
     
     # 调用模型获取的数据
-    r = requests.get( cfgG.HOST_PORT + cfgG.KnowledgeModel_preURL + "/getKnowledgeModelData",json=deepResultJSON )
+    # r = requests.get( cfgG.HOST_PORT + cfgG.KnowledgeModel_preURL + "/getKnowledgeModelData",json=deepResultJSON )
     
-    view = r.json()['view']
+    r = knowledgeMC.doKnowledgeModel(deepResultJSON)
     
-    error = r.json()['error']
+    rJson = json.loads(r)
+    
+    view = rJson['view']
+    
+    error = rJson['error']
     
     resultJSON['CQL'] = view['CQL']
     resultJSON['return'] = view['return']
@@ -192,9 +200,6 @@ def doKnowledgeModel(deepResultJSON):
 
 
 
-if __name__ == "__main__":
-   
-    app.run( port=1234, debug=True)
    
 
 
