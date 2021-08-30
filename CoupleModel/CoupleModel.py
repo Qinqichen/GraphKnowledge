@@ -1,12 +1,16 @@
 import flask
 from flask import request,jsonify 
 from .DatabaseController import DatabaseController as DBController
+import time
+import logging
 
+handler = logging.FileHandler("flask.log")
 
 # 实例化 flask
 app = flask.Flask(__name__)
 
 
+app.logger.addHandler(handler)
 
 # 将预测函数定义为一个端点
 @app.route("/getCoupleModelData", methods=["GET","POST"])
@@ -38,10 +42,10 @@ def doCoupleModel():
              "model":"问答对模块",
              "isError":False
              }
-    
+    startTime = time.time()
     # TODO:待修改 添加错误类型
     dataFromDB = DBController.QuestionCoupleDB().selectByQuestion(json_data)
-    
+    app.logger.warning("coupleModel内部调用 Time: "+str(time.time() - startTime))
     data['answer'] = dataFromDB['answer']
     data['have'] = dataFromDB['have']
     

@@ -11,6 +11,7 @@ from flask import Flask , request ,jsonify ;
 import requests;
 import logging
 import ConfigKnowledge as cfgG
+import time
 
 handler = logging.FileHandler(cfgG.LOG_FILE_PATH)
 
@@ -31,8 +32,9 @@ app.logger.addHandler(handler)
 @app.route( cfgG.Controller_preURL + "/getAnswer",methods=['get','post'])
 def getAnswer():
     
-    json_data = request.get_json()
+    startTime = time.time()
     
+    json_data = request.get_json()
     
     app.logger.warning(json_data)
     
@@ -81,6 +83,8 @@ def getAnswer():
             "view":resultView,
             "error":errorView,
         }
+    
+    app.logger.warning("getAnswer Time: "+str(time.time() - startTime))
 
     return jsonify(showJson)
     
@@ -104,7 +108,8 @@ def saveQuestionCouple():
 
 # 调用问答对模型获取数据
 def doCoupleModel(questionJSON):
-    
+    app.logger.warning("进入CoupleModel")
+    startTime = time.time()
     # 需要返回给交互界面的数据
     resultJSON = {
         "id": 2,
@@ -125,11 +130,13 @@ def doCoupleModel(questionJSON):
     resultJSON['answer'] = view['answer']
     resultJSON['have'] = view['have']
     
-    
+    app.logger.warning("doCoupleModel Time: "+str(time.time() - startTime))
     return resultJSON,error
 
 # 调用深度模型获取数据
 def doDeepModel(questionJSON):
+    
+    app.logger.warning("进入doDeepModel")
     
     # 需要返回给交互界面的数据
     resultJSON = {
@@ -160,6 +167,7 @@ def doDeepModel(questionJSON):
 # 调用知识图谱模型查询数据
 def doKnowledgeModel(deepResultJSON):
     
+    app.logger.warning("进入doKnowledgeModel")
     resultJSON = {
         "id": 3,
         "name": "知识图谱模型视图",

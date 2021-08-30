@@ -2,18 +2,33 @@ from flask import Flask,render_template,request,jsonify
 from flask_sqlalchemy import SQLAlchemy
 import json
 from . import config
+import time
+import logging
+
+handler = logging.FileHandler("flask.log")
+
 
 app = Flask(__name__)  # 创建Flask对象
 app.config.from_object(config)  # 关联config.py文件进来
 db = SQLAlchemy(app)  # 建立和数据库的关系映射
 
+app.logger.addHandler(handler)
 class QA(db.Model):
     __tablename__ = 'qa'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     question = db.Column(db.String)
     answer = db.Column(db.String)
 
-
+class QuestionCouple(db.Model):
+    
+    __tablename__ = 'questionCouple'
+    
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    question = db.Column(db.String(512),unique = True ,index = True)
+    answer = db.Column(db.String(512))
+    queryNum = db.Column(db.Integer,default = 0 )
+    useful = db.Column(db.Integer,default = 0 )
+    unuseful = db.Column(db.Integer,default = 0 )
 
 
 
@@ -65,11 +80,10 @@ def a():
     return "success"
 
 
-# 测试代码  qqc  add 
-# 我修改了数据库的密码，你测试的时候记得改回来
-@app.route('/testSelect')
-def testSelect():
-    
+# 用问题查询答案代码
+@app.route('/SelectByQuestion')
+def SelectByQuestion():
+    startTime = time.time()
     question = request.get_json()['question']
     
     result = {
@@ -78,15 +92,19 @@ def testSelect():
         'have':False
         }
     
-    qas = QA.query.filter(QA.question == question).all()
-   
-    if len(qas) == 0 :
+    questionAnswer = QuestionCouple.query.filter(QuestionCouple.question == question).first()
+    
+    if questionAnswer != None:
+        result['answer'] = questionAnswer.answer
+        result['have'] = True
+        app.logger.warning("查询数据库 Time: "+str(time.time() - startTime))
+        return jsonify(result)
+    else:
+        # 可以加入其他功能
+        
+        app.logger.warning("查询数据库 Time: "+str(time.time() - startTime))
         return json.dumps(result)
         
-    result['answer'] = qas[0].answer
-    result['have'] = True
-    
-    return jsonify(result)
 
 # end  qqc add 
 

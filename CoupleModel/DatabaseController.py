@@ -18,7 +18,6 @@ import requests
 import sys
 sys.path.append('..')
 import ConfigKnowledge as cfgG
-
 class DatabaseController:
     
     def __init__(self):
@@ -34,8 +33,8 @@ class DatabaseController:
         
         def selectByQuestion(self,questionJson):
             
-            r = requests.get(cfgG.HOST_PORT+cfgG.QuestionDB_preURL+'/testSelect', json = questionJson)
-        
+            r = requests.get(cfgG.HOST_PORT+cfgG.QuestionDB_preURL+'/SelectByQuestion', json = questionJson)
+            
             return r.json()
         
         def insert(self,question,answer = 'None'):

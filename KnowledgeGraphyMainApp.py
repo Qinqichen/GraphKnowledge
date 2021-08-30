@@ -20,12 +20,15 @@ from KnowledgeModel.KnowledgeModel import app as KnowledgeModel
  
 from CoupleModel.QuestionDB import app as QuestionDB
 
+from KnowledgeGraphWeb.webStaticSend import app as WebIndex
+
 app = DispatcherMiddleware(controller,
                            {
                                cfgG.CoupleModel_preURL:CoupleModel,
                                cfgG.DeepModel_preURL:DeepModel,
                                cfgG.KnowledgeModel_preURL:KnowledgeModel,
-                               cfgG.QuestionDB_preURL:QuestionDB
+                               cfgG.QuestionDB_preURL:QuestionDB,
+                               '/web':WebIndex
                             })
 
 

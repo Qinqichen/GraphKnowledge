@@ -1,268 +1,32 @@
-testsdfsdf
-{'question': '交互界面请求的问题'}
-sdfsdf
-{'question': '交互界面请求的问题'}
-sdfsdf
-{'question': '交互界面请求的问题'}
-sdfsdf
-{'question': '交互界面请求的问题'}
-sdfsdf
-{'question': '交互界面请求的问题'}
-sdfsdf
-{'question': '交互界面请求的问题'}
-sdfsdf
-{'question': '交互界面请求的问题'}
-sdfsdf
-{'question': '交互界面请求的问题'}
-sdfsdf
-{'question': '交互界面请求的问题'}
-sdfsdf
-{'question': '正常问题'}
-sdfsdf
-{'question': '深度模型出错'}
-sdfsdf
-{'question': '图谱模型出错'}
-sdfsdf
-{'question': '问答对模型有答案'}
-sdfsdf
-{'question': '正常问题'}
-sdfsdf
-{'question': '深度模型出错'}
-sdfsdf
-{'question': '图谱模型出错'}
-sdfsdf
-{'question': '--------问答对模型有答案--------'}
-sdfsdf
-{'question': '----------正常问题---------'}
-sdfsdf
-{'question': '---------深度模型出错----------'}
-sdfsdf
-{'question': '------------图谱模型出错------------'}
-sdfsdf
-{'question': '--------问答对模型有答案--------'}
-sdfsdf
-{'question': '----------正常问题---------'}
-sdfsdf
-{'question': '---------深度模型出错----------'}
-sdfsdf
-{'question': '------------图谱模型出错------------'}
-sdfsdf
-{'question': '--------问答对模型有答案--------'}
-sdfsdf
-{'question': '----------正常问题---------'}
-sdfsdf
-{'question': '---------深度模型出错----------'}
-sdfsdf
-{'question': '------------图谱模型出错------------'}
-sdfsdf
-{'question': '问答对模型有答案'}
-sdfsdf
-{'question': '----------正常问题---------'}
-sdfsdf
-{'question': '---------深度模型出错----------'}
-sdfsdf
-{'question': '------------图谱模型出错------------'}
-sdfsdf
-{'question': '问答对模型有答案'}
-sdfsdf
-{'question': '正常问题'}
-sdfsdf
-{'question': '深度模型出错'}
-sdfsdf
-{'question': '图谱模型出错'}
-sdfsdf
-{'question': '问答对模型有答案'}
-sdfsdf
-{'question': '正常问题'}
-sdfsdf
-{'question': '深度模型出错'}
-sdfsdf
-{'question': '图谱模型出错'}
-None
-Exception on /knowledgeGraphServer/getAnswer [GET]
-Traceback (most recent call last):
-  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 2447, in wsgi_app
-    response = self.full_dispatch_request()
-  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\_compat.py", line 39, in reraise
-    raise value
-  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 1936, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "D:\Edit\Python\python38\KnowledgeController.py", line 40, in getAnswer
-    "question":json_data['question']
-TypeError: 'NoneType' object is not subscriptable
-{'question': 'ttt'}
-Exception on /knowledgeGraphServer/getAnswer [GET]
-Traceback (most recent call last):
-  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 2447, in wsgi_app
-    response = self.full_dispatch_request()
-  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\_compat.py", line 39, in reraise
-    raise value
-  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 1936, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "D:\Edit\Python\python38\KnowledgeController.py", line 51, in getAnswer
-    coupleResult , errorCouple = doCoupleModel(question)
-  File "D:\Edit\Python\python38\KnowledgeController.py", line 123, in doCoupleModel
-    view = r.json()['view']
-  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\requests\models.py", line 900, in json
-    return complexjson.loads(self.text, **kwargs)
-  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\json\__init__.py", line 357, in loads
-    return _default_decoder.decode(s)
-  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\json\decoder.py", line 337, in decode
-    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
-  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\json\decoder.py", line 355, in raw_decode
-    raise JSONDecodeError("Expecting value", s, err.value) from None
-json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
-{'question': 'ttt'}
-Exception on /knowledgeGraphServer/getAnswer [GET]
-Traceback (most recent call last):
-  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 2447, in wsgi_app
-    response = self.full_dispatch_request()
-  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\_compat.py", line 39, in reraise
-    raise value
-  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 1936, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "D:\Edit\Python\python38\KnowledgeController.py", line 51, in getAnswer
-    coupleResult , errorCouple = doCoupleModel(question)
-  File "D:\Edit\Python\python38\KnowledgeController.py", line 123, in doCoupleModel
-    view = r.json()['view']
-  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\requests\models.py", line 900, in json
-    return complexjson.loads(self.text, **kwargs)
-  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\json\__init__.py", line 357, in loads
-    return _default_decoder.decode(s)
-  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\json\decoder.py", line 337, in decode
-    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
-  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\json\decoder.py", line 355, in raw_decode
-    raise JSONDecodeError("Expecting value", s, err.value) from None
-json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
-{'question': 'ttt'}
-Exception on /knowledgeGraphServer/getAnswer [GET]
-Traceback (most recent call last):
-  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 2447, in wsgi_app
-    response = self.full_dispatch_request()
-  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\_compat.py", line 39, in reraise
-    raise value
-  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 1936, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "D:\Edit\Python\python38\KnowledgeController.py", line 51, in getAnswer
-    coupleResult , errorCouple = doCoupleModel(question)
-  File "D:\Edit\Python\python38\KnowledgeController.py", line 123, in doCoupleModel
-    view = r.json()['view']
-  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\requests\models.py", line 900, in json
-    return complexjson.loads(self.text, **kwargs)
-  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\json\__init__.py", line 357, in loads
-    return _default_decoder.decode(s)
-  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\json\decoder.py", line 337, in decode
-    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
-  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\json\decoder.py", line 355, in raw_decode
-    raise JSONDecodeError("Expecting value", s, err.value) from None
-json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
-{'question': 'ttt'}
-Exception on /knowledgeGraphServer/getAnswer [GET]
-Traceback (most recent call last):
-  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 2447, in wsgi_app
-    response = self.full_dispatch_request()
-  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\_compat.py", line 39, in reraise
-    raise value
-  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 1936, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "D:\Edit\Python\python38\KnowledgeController.py", line 51, in getAnswer
-    if coupleResult['have'] == True:
-  File "D:\Edit\Python\python38\KnowledgeController.py", line 123, in doCoupleModel
-  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\requests\models.py", line 900, in json
-    return complexjson.loads(self.text, **kwargs)
-  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\json\__init__.py", line 357, in loads
-    return _default_decoder.decode(s)
-  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\json\decoder.py", line 337, in decode
-    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
-  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\json\decoder.py", line 355, in raw_decode
-    raise JSONDecodeError("Expecting value", s, err.value) from None
-json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
-{'question': 'ttt'}
-Exception on /knowledgeGraphServer/getAnswer [GET]
-Traceback (most recent call last):
-  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 2447, in wsgi_app
-    response = self.full_dispatch_request()
-  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\_compat.py", line 39, in reraise
-    raise value
-  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 1936, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "D:\Edit\Python\python38\KnowledgeController.py", line 48, in getAnswer
-    coupleResult , errorCouple = doCoupleModel(question)
-  File "D:\Edit\Python\python38\KnowledgeController.py", line 120, in doCoupleModel
-    view = r.json()['view']
-  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\requests\models.py", line 900, in json
-    return complexjson.loads(self.text, **kwargs)
-  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\json\__init__.py", line 357, in loads
-    return _default_decoder.decode(s)
-  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\json\decoder.py", line 337, in decode
-    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
-  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\json\decoder.py", line 355, in raw_decode
-    raise JSONDecodeError("Expecting value", s, err.value) from None
-json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
-{'question': 'ttt'}
-Exception on /knowledgeGraphServer/getAnswer [GET]
-Traceback (most recent call last):
-  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 2447, in wsgi_app
-    response = self.full_dispatch_request()
-  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\_compat.py", line 39, in reraise
-    raise value
-  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\flask\app.py", line 1936, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "D:\Edit\Python\python38\KnowledgeController.py", line 48, in getAnswer
-    coupleResult , errorCouple = doCoupleModel(question)
-  File "D:\Edit\Python\python38\KnowledgeController.py", line 120, in doCoupleModel
-    view = r.json()['view']
-  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\site-packages\requests\models.py", line 900, in json
-    return complexjson.loads(self.text, **kwargs)
-  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\json\__init__.py", line 357, in loads
-    return _default_decoder.decode(s)
-  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\json\decoder.py", line 337, in decode
-    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
-  File "D:\ToolsForEdit\Anaconda\envs\python38\lib\json\decoder.py", line 355, in raw_decode
-    raise JSONDecodeError("Expecting value", s, err.value) from None
-json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
-{'question': 'v'}
-{'question': 'vvv'}
-{'question': 'ttt'}
+{'question': 'aaa'}
+进入CoupleModel
+getAnswer Time: 4.1984124183654785
+getAnswer Time: 4.200381517410278
+{'question': 'aaa'}
+进入CoupleModel
+doCoupleModel Time: 4.202180862426758
+getAnswer Time: 4.2041802406311035
+{'question': 'bbb'}
+进入CoupleModel
+doCoupleModel Time: 4.075044393539429
+getAnswer Time: 4.077005624771118
+{'question': 'aaa'}
+进入CoupleModel
+doCoupleModel Time: 4.210752725601196
+getAnswer Time: 4.211749792098999
+{'question': 'aaa'}
+进入CoupleModel
+coupleModel内部调用 Time: 2.1462066173553467
+doCoupleModel Time: 4.199628591537476
+getAnswer Time: 4.2006144523620605
+{'question': 'aaa'}
+进入CoupleModel
+coupleModel内部调用 Time: 2.147163152694702
+doCoupleModel Time: 4.195343494415283
+getAnswer Time: 4.196340799331665
+{'question': 'aaa'}
+进入CoupleModel
+查询数据库 Time: 0.09126830101013184
+coupleModel内部调用 Time: 2.13739013671875
+doCoupleModel Time: 4.198024272918701
+getAnswer Time: 4.199021577835083
