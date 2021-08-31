@@ -26,7 +26,7 @@ KnowledgeModel_preURL = "/KnowledgeModel"
 
 QuestionDB_preURL = "/QuestionDB"
 
-
+Web_preURL = "/web"
 
 
 
