@@ -7,11 +7,11 @@ Created on Tue Jun 15 11:09:43 2021
 @pythonVersion: python-3.8
 """
 
-from flask import Flask , request ,jsonify,Blueprint
-import requests;
-import logging
+from flask import Flask , request ,jsonify,Blueprint , current_app
+import requests
 import ConfigKnowledge as cfgG
 import json
+import time
 
 import CoupleModel.CoupleModelController as coupleMC
 import DeepModel.DeepModel as deepMC
@@ -33,8 +33,12 @@ mainController_Blueprint = Blueprint("mainController", __name__ )
 @mainController_Blueprint.route("/getAnswer",methods=['get','post'])
 def getAnswer():
     
+    startTime = time.time()
     
     json_data = request.get_json()
+    
+    
+    
     
     question = {
         "question":json_data['question']
@@ -86,6 +90,8 @@ def getAnswer():
             "view":resultView,
             "error":errorView,
         }
+    
+    current_app.logger.warning("getAnswer time: " + str(time.time() - startTime))
     
     return jsonify(showJson)
     
