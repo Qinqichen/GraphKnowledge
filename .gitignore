@@ -2,6 +2,7 @@
 /DeepModel/Relation/*
 /DeepModel/Entity/sample_data/*
 /DeepModel/EntitySource/sample_data/*
+#其中刨除文件，可上传
 !/DeepModel/EntitySource/sample_data/*.bmes
 
 #部分缓存文件
