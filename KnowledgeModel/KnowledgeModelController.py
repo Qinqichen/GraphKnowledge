@@ -1,15 +1,21 @@
-import flask
-# import pandas as pd
-# import requests
-# import torch
+
 from flask import request,Blueprint
 import json
+from .Neo4jDBController import Neo4jControllerClass
 
 knowledgeModel_Blueprint = Blueprint("knowledgeModel", __name__)
 
 
-# 加载模型
-#model = torch.load('modelname')
+
+scheme = "neo4j"  # Connecting to Aura, use the "neo4j+s" URI scheme
+host_name = "127.0.0.1"
+port = 7687
+url = "{scheme}://{host_name}:{port}".format(scheme=scheme, host_name=host_name, port=port)
+user = "neo4j"
+password = "qinqichen"
+neo4jClass = Neo4jControllerClass(url, user, password)
+
+
 
 # 将预测函数定义为一个端点
 @knowledgeModel_Blueprint.route("/getKnowledgeModelData", methods=["GET","POST"])
@@ -56,10 +62,10 @@ def doKnowledgeModel(json_data):
              "isError":False
              }
     
-    # 测试语句
-    if json_data['origin'] == '图谱模型出错' :
+    # # 测试语句
+    # if json_data['origin'] == '图谱模型出错' :
         
-        error['isError'] = True
+    #     error['isError'] = True
     
     
     
@@ -70,4 +76,12 @@ def doKnowledgeModel(json_data):
 
     return json.dumps(showJson)
 
-
+@knowledgeModel_Blueprint.route("/getIndexShowGraphData", methods=["GET","POST"])
+def getIndexShowGraphData():
+    
+    
+    
+    showData = neo4jClass.getIndexShowData()
+    
+    
+    return json.dumps(showData)
