@@ -19,6 +19,9 @@ def index():
 
     return webStaticController_Blueprint.send_static_file('index.html')
 
+@webStaticController_Blueprint.route('/favicon.ico')
+def get_fav():
+    return webStaticController_Blueprint.send_static_file('favicon.ico')
 
 
 

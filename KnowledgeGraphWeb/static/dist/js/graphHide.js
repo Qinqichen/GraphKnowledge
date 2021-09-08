@@ -1,13 +1,15 @@
-var ROOT_PATH = 'https://cdn.jsdelivr.net/gh/apache/echarts-website@asf-site/examples';
+var ROOT_PATH = '/KnowledgeModel/getIndexShowGraphData';
 
 var chartDom = document.getElementById('main');
 var myChart = echarts.init(chartDom);
 var option;
 
 myChart.showLoading();
-$.getJSON(ROOT_PATH + '/data/asset/data/les-miserables.json', function (graph) {
+$.getJSON(ROOT_PATH , function (graph) {
     myChart.hideLoading();
 
+    console.log(graph)
+    
     option = {
         tooltip: {},
         legend:{
@@ -24,23 +26,24 @@ $.getJSON(ROOT_PATH + '/data/asset/data/les-miserables.json', function (graph) {
             {
                 name: 'Les Miserables',
                 type: 'graph',
-                layout: 'none',
+                layout: 'force',
                 data: graph.nodes,
                 links: graph.links,
                 categories: graph.categories,
+                draggable: true,
                 roam: true,
                 label: {
                     show: true,
-                    position: 'right',
                     formatter: '{b}'
                 },
                 labelLayout: {
                     hideOverlap: true
                 },
-                scaleLimit: {
-                    min: 0.4,
+              /***  scaleLimit: {
+                    min: 1
                     max: 2
                 },
+               ****/
                 lineStyle: {
                     color: 'source',
                     curveness: 0.3

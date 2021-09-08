@@ -22,13 +22,13 @@ from CoupleModel.QuestionDB import questionDB_Blueprint
 from KnowledgeGraphWeb.webStaticSendController import webStaticController_Blueprint
 
 
-
 app.register_blueprint(mainController_Blueprint, url_prefix=cfgG.Controller_preURL)
 app.register_blueprint(coupleModel_Blueprint,url_prefix=cfgG.CoupleModel_preURL)
 app.register_blueprint(webStaticController_Blueprint,url_prefix=cfgG.Web_preURL)
 app.register_blueprint(deepModelController_Blueprint,url_prefix=cfgG.DeepModel_preURL)
 app.register_blueprint(knowledgeModel_Blueprint,url_prefix=cfgG.KnowledgeModel_preURL)
 app.register_blueprint(questionDB_Blueprint,url_prefix=cfgG.QuestionDB_preURL)
+
 
 if __name__ == '__main__':
     
