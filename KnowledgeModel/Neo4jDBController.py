@@ -9,6 +9,7 @@ from .Neo4jAPP import App
 import copy
 
 
+
 class Neo4jControllerClass:
     
     
@@ -28,10 +29,10 @@ class Neo4jControllerClass:
         self.link =  {
                "source": "-1",
                "target": "-1",
-                "label":{
+               "label":{
                     "show":'true',
                     'formatter':''
-                    },
+                   },
                 # "lineStyle": {
                 #     "curveness": 0.2
                 # }
@@ -133,6 +134,47 @@ class Neo4jControllerClass:
     
         return cList
     
+    
+    def n_r_m_2_httpResponse(self,result):
+        
+        nodes = []
+        links = []
+        categories = []
+        
+        for r in result:
+            nodes.append(r['n'])
+            nodes.append(r['m'])
+            links.append(r['r'])
+            
+            for i in r['n'].labels:
+                categories.append(i)
+            for i in r['m'].labels:
+                categories.append(i)
+        
+        cDict = self.getCategoiesDict(self.getCategoriesSet(categories))
+        
+        nList = self.transNodes(nodes,cDict)
+        lList = self.transLinks(links)
+        cList = self.transCategories(cDict)
+        
+        httpResponse = copy.deepcopy(self.httpResponse)
+        
+        httpResponse['nodes'] = nList
+        httpResponse['links'] = lList
+        httpResponse['categories'] = cList
+        
+        return httpResponse
+    
+    
+    def getNodesAndLinksByNodesName(self,nameNodes):
+        
+        result = self.app.executeQueryRead("match(n{name:'"+ nameNodes +"'}) -[r]-> (m) return n,r,m")
+        
+        
+        httpResponse = self.n_r_m_2_httpResponse(result)
+        
+        return httpResponse
+    
 
     def getIndexShowData(self):
         
@@ -187,8 +229,9 @@ if __name__ == "__main__":
     app = Neo4jControllerClass(url, user, password)
     
     
-    app.getIndexShowData()
+    # app.getIndexShowData()
     
+    r = app.getNodesAndLinksByNodesName('张学友')
     
    
     app.close()

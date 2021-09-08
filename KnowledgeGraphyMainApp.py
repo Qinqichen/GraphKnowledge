@@ -30,6 +30,7 @@ app.register_blueprint(knowledgeModel_Blueprint,url_prefix=cfgG.KnowledgeModel_p
 app.register_blueprint(questionDB_Blueprint,url_prefix=cfgG.QuestionDB_preURL)
 
 
+
 if __name__ == '__main__':
     
     app.run(port=1234, debug=True)
