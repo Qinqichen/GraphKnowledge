@@ -1,4 +1,4 @@
-# GraphyKnowledge
+# GraphKnowledge
 
 一款知识图谱应用
 
