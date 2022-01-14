@@ -1,5 +1,7 @@
 # GraphKnowledge
 
+![](https://raw.githubusercontent.com/Qinqichen/imgStoreGitHub/main/img/202201142022409.png)
+
 一款知识图谱应用
 
 采用python编写，后端使用flask搭建
