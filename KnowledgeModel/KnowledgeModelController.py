@@ -79,9 +79,30 @@ def doKnowledgeModel(json_data):
 @knowledgeModel_Blueprint.route("/getIndexShowGraphData", methods=["GET","POST"])
 def getIndexShowGraphData():
     
-    
-    
     showData = neo4jClass.getIndexShowData()
     
     
     return json.dumps(showData)
+
+@knowledgeModel_Blueprint.route("/getNodesByNodesName/<string:name>", methods=["GET","POST"])
+def getNodesByNodesName(name):
+    
+    return json.dumps(doGetNodesByNodesName(name))
+
+def doGetNodesByNodesName(name):
+    
+    showData = neo4jClass.getNodesAndLinksByNodesName(name)
+    
+    return showData
+
+
+
+
+
+
+
+
+
+
+
+

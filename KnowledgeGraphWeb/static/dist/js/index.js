@@ -52,6 +52,67 @@ $("#submitQuestion").off("click").on("click",function () {
                 
                 
                 
+                
+                
+                
+                if( question == "张学友" || question == "周星驰" ){
+                
+                    var myChart = echarts.getInstanceByDom(document.getElementById('main'));
+                    
+                    $.getJSON('/KnowledgeModel/getNodesByNodesName/'+question,function(graph){
+                    
+                        console.log(graph)
+                        option = {
+                                    series: [
+                                        {
+                                            data: graph.nodes,
+                                            links: graph.links,
+                                            categories: graph.categories
+                                        }
+                                    ]
+                                };
+                            
+                                myChart.setOption(option);
+                            
+                    
+                        });
+                    
+                
+                
+                }
+                else{
+                    var myChart = echarts.getInstanceByDom(document.getElementById('main'));
+                    
+                    $.getJSON('/KnowledgeModel/getIndexShowGraphData',function(graph){
+                    
+                        console.log(graph)
+                        option = {
+                                    series: [
+                                        {
+                                            data: graph.nodes,
+                                            links: graph.links,
+                                            categories: graph.categories
+                                        }
+                                    ]
+                                };
+                            
+                                myChart.setOption(option);
+                            
+                    
+                        });
+                
+                }
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
                 machineResponse.find("p:eq(0)").text(resultMessage);
                 machineResponse.find("small").text(new Date().format("yy-MM-dd hh:mm:ss"));
                 contentList.append(machineResponse);
