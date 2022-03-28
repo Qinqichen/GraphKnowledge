@@ -7,6 +7,7 @@ Created on Sat Jul 17 19:13:54 2021
 @pythonVersion: python-3.8
 """
 
+
 import ConfigKnowledge as cfgG
 
 from init import app
@@ -28,6 +29,7 @@ app.register_blueprint(webStaticController_Blueprint,url_prefix=cfgG.Web_preURL)
 app.register_blueprint(deepModelController_Blueprint,url_prefix=cfgG.DeepModel_preURL)
 app.register_blueprint(knowledgeModel_Blueprint,url_prefix=cfgG.KnowledgeModel_preURL)
 app.register_blueprint(questionDB_Blueprint,url_prefix=cfgG.QuestionDB_preURL)
+
 
 
 if __name__ == '__main__':

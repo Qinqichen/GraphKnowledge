@@ -11,6 +11,8 @@ import CoupleModel.config as config
 import logging
 import ConfigKnowledge as cfgG
 
+
+
 app = Flask(__name__)
 
 
