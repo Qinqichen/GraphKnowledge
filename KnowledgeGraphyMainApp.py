@@ -7,6 +7,7 @@ Created on Sat Jul 17 19:13:54 2021
 @pythonVersion: python-3.8
 """
 
+
 import ConfigKnowledge as cfgG
 
 from init import app
